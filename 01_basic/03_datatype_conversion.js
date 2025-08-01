@@ -54,3 +54,41 @@ let someNumber = 33  // number
 let stringNumber = String(someNumber)
 console.log(typeof stringNumber) // string
 console.log(stringNumber) // 33
+
+
+
+// ********************** Operations (ch-7) ***********************88888
+
+let value = 3
+let negValue = -value
+console.log(negValue) // -3
+
+
+console.log(2+2) // 4 
+console.log(2*2)  // 4 
+console.log(2**3) // 8 (power)
+
+// adding string....
+let str1 = "hello"
+let str2 = " jain"
+
+let str3 = str1 + str2 
+console.log(str3) // hello jain
+
+// complex things
+
+console.log("1" + 2);  // 12
+console.log(1 + "2");  // 12
+console.log("1"+ 2 + 2); //  122
+console.log(1 + 2 + "2"); // 32     *****
+
+console.log(true); // true
+console.log(+true);  // 1  // increment nahi hua ha but value agaya ha
+// console.log(true+); // error 
+
+console.log(+""); // 0   '+' karna sa conversion hu jata ha
+
+
+
+
+
