@@ -1,4 +1,4 @@
-// Array
+// Array  (part-1)
 // js array are resizeable ******
 // element differnt (type) ka bhi hu sakta ha
 
