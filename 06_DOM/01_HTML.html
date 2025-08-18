@@ -1,0 +1,311 @@
+<!-- DOM (document object model) -->
+<!-- In DOM  write all thing of HTML in caps. otherwise it will not work -->
+<!--  DOM tree we make in notes copy -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>DOM learning</title>
+</head>
+<body>
+    <div class = "bg-black">
+     <h1 class = "heading"> DOM learning </h1>   
+     <p> hi i am learning js </p>
+    </div>
+</body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>DOM learning</title>
+    <style>
+        .bg-black{
+            background-color: #212121 ;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class ="bg-black" >
+    <div>
+     <h1 id="title" class = "heading"> DOM learning from best teacher<span style = "display: none">test text</span></h1>   
+    <h2>aaaaaaaaaaaaa</h2>
+    <h2>bbbbbbbbbbbbb</h2>
+    <h2>ccccccccccccc</h2>
+    
+     <p> hi i am learning js </p>
+     <input type="password" name= "" id="">
+       <ul>
+            <li class="list-item">one</li>
+            <li class="list-item">two</li>
+            <li class="list-item">three</li>
+            <li class="list-item">four</li>
+       </ul>
+    </div>
+</body>
+</html>
+
+<!-- Important concepts -->
+
+<!--  we are trying to learn how to select element (in chrome we wil see(by inspect)) -->
+  <!--  we see  DOM learning from best teacher (heading select it -> inspect -> console) 
+
+   1 -> Targeting ID ->
+// Any element you have to target so write document (means whole screen we have selected) and in these it have
+   different different methods so we want getElementById (it is method)
+
+   // In console we are:-
+
+   -> document.getElementById('title')  // title we passed
+   // output->
+    <h1 id="title" class="heading"> DOM learning from best teacher</h1>
+
+   -> document.getElementById('title').id
+  // output :  'title'
+
+   ->  document.getElementById('title').class
+ // output: 'undefined'
+
+    ******* here behind the scene dom understand className so we write className only ****
+    -> document,getElementById('title').className
+    // output 'heading'
+
+   In js we write html so  we say jsx.....
+
+ -> To access attribute and attribute gives value
+     document.getElementById('title').getAttribute('id')
+     // output  'title'
+
+->  document.getElementById('title').getAttribute('class')
+
+    // output 'heading'
+
+// we can set attribute also
+->  document.getElementById('title').setAttribute('class', 'test')      // (class , value)
+    // output undefined
+    **** but in inspect you see that your code is overwrite
+      so in code happen that  class will be overwrite
+      <h1 id="title" class = "test"> DOM learning from best teacher</h1>   
+
+// storing in a variable
+ const title = document.getElementById('title')
+ // output undefined
+
+ but just you  write....   means it stored the value 
+   ->  title
+// output  <h1 id="title" class="heading"> DOM learning from best teacher</h1>
+
+
+// .(dot) we can access because sara ki sara object hi ha..
+/*
+  ->  title.style.background = 'green'
+  output   (title background is in green color)
+
+  -> title.style.padding = "15px"
+
+*/
+
+//  How to add content 
+
+ -> title
+output -> <h1 id="title" class="heading" style="background: green;"> 
+          DOM learning from best teacher</h1>
+
+
+// to we take out content
+   -> title.textContent
+      output ' DOM learning from best teacher'
+
+   -> title.innerHTML
+     output ' DOM learning from best teacher'
+
+   -> title.innerText
+     output ' DOM learning from best teacher'
+ 
+  /* NOTE:- here we have modified code above (add span and style tag)
+     All give same output but it all are different...
+
+
+      //   innerText vs textContent
+
+      -> title.innerText
+      output 'DOM learning from best teacher'
+
+      -> title.textContent
+      output' DOM learning from best teacher test text'
+
+       In innerText -> wo text aya ju visiblie ha
+       In textContent -> you get all(css etc) content
+
+      -> title.innerHTML
+      output ' DOM learning from best teacher
+      <span style="display: none">test text</span>'
+
+         // here  there is a html code so that also you will get
+        
+    */
+  -->
+  <!--   query selector   ( in real world problem we use)  -->
+
+  <!-- 
+  // 1-> here first h2 will be return to you. (modify code writing more h1)
+       1 ->  document.querySelector('h2') 
+       output  <h2>aaaaaaaaaaaaa</h2>
+  
+  
+  // we want id data so ( we write # for id)
+      -> document.querySelector('#title')
+     output   <h1 id="title" class="heading">…</h1>
+  
+  
+  // we want to select class (we write . for class)
+      -> document.querySelector('.heading')
+      output <h1 id="title" class="heading">…</h1>
+
+
+ // modify code input.....
+      -> document.querySelector('input[type="password"]')
+      output  <input type="password" name id>
+      
+ // modify code <ul>... 
+    
+ // selecting whole ul
+   -> document.querySelector('ul')
+      output   <ul>…</ul>
+
+ // in console we are writing these
+    -> const myul = document.querySelector('ul')     
+      output undefined
+
+    ->   myul.querySelector('li')
+      output  <li>…</li>
+     
+ // In console we are writing
+     -> const turnGreen = myul.querySelector('li') 
+      output undefined
+
+     -> turnGreen.style.backgroundColor = "green"
+      output 'green' ( in output screen first list is become green)
+
+     -> turnGreen.innerText
+     output 'one'
+
+     -> turnGreen.innerText = "five"
+     output 'five'
+
+**** this above we talk about how we selected indivival element...
+     so, querySelector gave you one value only....
+
+// But we want other value also then we use *** querySelectorAll ****
+
+-> document.querySelectorAll('li')
+ ouput 
+NodeList(3) [li, li, li]
+0: li
+1: li
+2: li
+length: 3
+[[Prototype]]
+: 
+NodeList
+
+   // holding in variable (in console)
+    ->  const tempLiList = document.querySelectorAll('li')
+        // undefined
+
+    ->   tempLiList
+         output  NodeList(3) [li, li, li] (same as above)
+        
+         /* 
+         remember in dom above NodeList or htmlcollection it is not purely array..
+         so you see in [[Prototype]] list there is no map..so
+         in array we get map function to use..
+         */
+
+         // checking in console
+
+         -> const myArr = [1,2,3,4]
+         // output undefined
+
+         ->  myArr
+         // output  (4) [1, 2, 3, 4]
+         /* 
+         [[Prototype]]: Array(0) here we can see map
+         */
+          
+       // back to story
+      -> tempLiList.style.color = "green"
+      // error because it is nodelist (not purely error)
+
+       -> tempLiList[0].style.color = 'green'   // '0' is used to color for first element
+        output 'green' (so first element color is green)
+
+      // in console 
+       -> const myH1 = document.querySelectorAll('h1')
+         output undefined
+
+      -> myH1
+        output nodeList [h1#title.heading]
+
+      -> myH1.style.color = "red"
+      // error  ( we have to tell konsa wala element)so,
+
+      -> myH1[0].style.color = "red"
+      // output  ( so our heading(dom learning....) is in red color)
+
+
+      // back to tempLiList
+      -> tempLiList
+      output  NodeList(3) [li, li, li]   ( so we see forEach loop is there in prototype)
+
+
+      // To use forEach we have give callback function
+      -> tempLiList.forEach(function (l) {  // (yaha shift dawa ka enter karna)
+            l.style.backgroundColor = "purple"
+          })
+            output (our all list is in purple color
+
+      
+      // modify code in li giving class name.....
+        
+      -> document.getElementsByClassName('list-item')
+        // output  HTMLCollection []  ( here there is no looping option available)
+          /*
+           Want to apply loop is no option so in these htmlcollection
+           we have to convert it. 
+
+           // so first storing these in variable
+          
+           -> const tempClassList = document.getElementsByClassName('list-item')
+              output undefined
+           
+            -> tempClassList
+             output HTMLCollection []
+
+   So we have a method to convert so we use Array.from(tempClassList)  // (capital A) 
+          
+           -> Array.from(tempClassList)
+             output []  // now it is array
+     
+           //  holding variable here
+
+         -> const myConvertedArray =  Array.from(tempClassList)
+           output  undefined
+
+         -> myConvertedArray
+           output []
+
+     // now using forEach  function
+
+      myConvertedArray.forEach(function(li) {
+           li.style.color ="orange"
+      })  
+         output undefined (list color is change)
+             
+-->
+      
+  
