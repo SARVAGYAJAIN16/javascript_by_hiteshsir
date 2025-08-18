@@ -1,0 +1,99 @@
+<!-- Edit and remove element in DOM -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body style="background-color: #212121; color:#fff;">
+    <uL class = "language">
+        <li> Javascript</li>
+
+    </uL>
+</body>
+<script>
+    /*  Adding list item */
+    
+    function addLanguage(langName) {
+      // creating a element
+       const li = document.createElement('li')
+      // adding value inside list items
+      li.innerHTML = `${langName}`
+
+      // attaching
+      document.querySelector('.language').appendChild(li)
+    }
+    addLanguage("python")
+    addLanguage("typeScript")
+    /*  output
+    javascript
+    python
+    typeScript
+    */
+
+     /* 
+        But the problem is what if we have to traverse 10000 (ek ka baad hi tu ayega)
+        so it create problems but not optimization
+     */
+
+    // doing in optimize manner
+    function addOptiLanguage(langName){
+        const li = document.createElement('li');
+        // here down we have append child and then we pass a new text node.
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptiLanguage('goLang')
+    /* Output 
+       javascript
+       python
+       typeScript
+       goLang
+    */
+   /* NOTE:- In bigger project dont use innerHTML instead use 
+             appendChild.
+   */
+
+  // Editing  Value 
+   const secondLang = document.querySelector("li:nth-child(2)")
+    console.log(secondLang); // python
+   // if using innerHTML like
+  // secondLang.innerHTML = "Mojo" // but again we have to traverse....
+   // But above method is not optimize
+
+   // Another approch
+
+   // creating element and holding
+     const newli = document.createElement('li')
+     newli.textContent = "Mojo"
+    // adding value
+    secondLang.replaceWith(newli)
+    /* Output
+     javascript
+     Mojo
+     typeScript
+     goLang
+    */
+
+ // ->  edit
+  const firstLang = document.querySelector("li:first-child")
+  firstLang.outerHTML = '<li>CSS</li>'
+  /* output
+     CSS
+     Mojo
+     typescript
+     goLang
+  */
+
+ // -> remove
+
+     const lastLang = document.querySelector('li:last-child')
+     lastLang.remove();
+     /* output
+      CSS
+      Mojo
+      typeScript
+    */  
+</script>
+</html>
