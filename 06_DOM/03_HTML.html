@@ -1,0 +1,51 @@
+<!-- How to create programmetly node list  -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New element in DOM</title>
+ </head>
+ <body style = "background-color: #212121; color: #fff;">
+    
+ </body>
+ <script>
+    // create a div element
+    const div = document.createElement('div')
+    console.log(div); // <div></div>
+
+    // now in div element properties want to add
+
+    div.className = "main"
+    div.id = Math.round(Math.random() * 10 + 1)
+    // setAttribute (key, value) pair 
+
+    div.setAttribute("title","generated title")
+    // output <div class ="main" id="1" title ="generated title"></div>
+
+    div.style.backgroundColor = "green"
+    div.style.padding = "12px"
+
+    // to optimize
+   // div.innerText = "sarvagya aur code"
+   const addText =  document.createTextNode("sarvagya aur code")
+   div.appendChild(addText)
+
+  /* attaching in document */
+    document.body.appendChild(div) // sarvagya aur code come in green background
+
+
+
+
+/* These are all we doing in memory (div is inside memory)....
+   div is in memory not in page. To attached in page we tell that 
+   attached this child. 
+*/   
+
+ </script>
+ </html>
+
+
+
+
