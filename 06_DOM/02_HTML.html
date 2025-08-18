@@ -1,0 +1,103 @@
+<!-- Here we learn about relations like parent-child -->
+<!--  DOM is a tree like structure and it will traverse -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> New Element in DOM </title>
+</head>
+<body style = "background-color: #212121; color: #fff;">
+     <div class="parent">
+          <div class="day">Mon</div>
+          <div class="day">Tue</div>
+          <div class="day">Wed</div>
+          <div class="day">Thu</div>
+     </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent')
+    console.log(parent);
+    console.log(parent.children); // children is a property
+    console.log(parent.children[1]);
+    console.log(parent.children[1].innerHTML); // Tue
+
+    for(let i=0; i < parent.children.length; i++){
+        console.log(parent.children[i].innerHTML); // Mon tue wed Thu (in different line)
+    }
+
+    parent.children[1].style.color = "orange"
+    console.log(parent.firstElementChild);
+    console.log(parent.lastElementChild);
+
+     // child to parent value we want
+
+     const dayone = document.querySelector('.day')
+     console.log(dayone); // <div class="day">Mon</div>
+     
+     console.log(dayone.parentElement); // <div class="parent">…</div> (whole parentelement come)
+     console.log(dayone.nextElementSibling) // <div class="day" style="color: orange;">Tue</div>
+
+     console.log("NODES: ", parent.childNodes);
+
+
+
+
+
+
+
+
+</script>
+</html>
+
+<!--   In console we are writing code...
+
+      // above code
+   ->  const parent = document.querySelector('.parent')
+        console.log(parent);
+    output   <div class="parent">…</div>
+
+   -> const parent = document.querySelector('.parent')
+    console.log(parent);
+    console.log(parent.children);  
+    output  HTMLCollection(4) [div.day, div.day, div.day, div.day]
+
+  /*
+   NOTE HTML collection and node list are not purely array.. they are like array..***
+  */
+  
+   ->  const parent = document.querySelector('.parent')
+       console.log(parent.children[1]);
+   
+    output <div class="day">Tue</div>
+ 
+   ->  const parent = document.querySelector('.parent')
+       console.log(parent.children[1].innerHTML);
+    output  Tue
+
+   ->  console.log(parent.firstElementChild);
+      output  <div class="day">Mon</div>
+
+   ->  console.log(parent.lastElementChild);
+      output  <div class="day">Thu</div>
+
+
+   ->  console.log("NODES: ", parent.childNodes);
+    output   (see tree structure)
+    NodeList(9) [text, div.day, text, div.day, text, div.day, text, div.day, text]
+    0: text     // enter kiya uska text element count kar raha 
+    1: div.day
+    2: text
+    3: div.day
+    4: text
+    5: div.day
+    6: text
+    7: div.day
+    8: text
+    length: 9
+    [[Prototype]]: NodeList
+
+
+
+
+-->
