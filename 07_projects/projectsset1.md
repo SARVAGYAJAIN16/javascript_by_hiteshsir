@@ -83,3 +83,29 @@ form.addEventListener('submit', function (e) {
 
 ```
 
+## Project 3 solution 
+``` Javascript
+const clock = document.getElementById('clock');
+// or ( both are same thing)
+// const clock = document.querySelector('#clock')
+
+/*
+let date = new Date()
+console.log(date.toLocaleDateString()); // in console 8/21/2025 come
+*/
+
+// we want everytime we get updated date so we have a method
+// setInterval method (it say after how many interval this will run)
+
+// two parameter ( function , time(in sec))
+// in every sec we will get value
+setInterval(function () {
+  let date = new Date();
+  // console.log(date.toLocaleDateString());// ( we have to update document. ju node ha usha update karna tha ek second )
+  // so we write
+  clock.innerHTML = date.toLocaleTimeString();
+}, 1000);
+
+
+```
+
