@@ -109,3 +109,135 @@ setInterval(function () {
 
 ```
 
+## Project 4 solution
+``` javascript
+// generating random number between 1-100
+//console.log(Math.random()); // 0.3141853797547367
+
+// here number between 0-9 are there...
+//console.log(Math.random() * 10); // 4.39466858708557
+
+// we want number from 1 to 100 so doing +1 it give gurantee that 0 will not come...
+//console.log(Math.random() * 100 + 1); // 71.57766727720468
+
+// We want only integer so wrapping
+
+//console.log(parseInt(Math.random() * 100 + 1)); // 95
+
+let randomNumber = parseInt(Math.random() * 100 + 1);
+
+const submit = document.querySelector('#subt');
+
+// taking user input from (guessField)   .... but here we have not taken
+const userInput = document.querySelector('#guessField');
+
+// taking user guesses ( in array we will put in later)
+const guessSlot = document.querySelector('.guesses');
+
+// user last result value
+const remaining = document.querySelector('.lastResult');
+
+// tell user to low or high value
+const lowOrHi = document.querySelector('.lowOrHi');
+
+const startOver = document.querySelector('.resultParas');
+
+// creating paragraph
+const p = document.createElement('p');
+
+// taking array because user will submit value and we will store that value. and we will show whole array to user(so that again guess value they will not repeat)
+
+let prevGuess = [];
+let numGuess = 1;
+
+let playGame = true;
+
+// checking you are eligilbe for playing game or not..
+if (playGame) {
+  submit.addEventListener('click', function (e) {
+    e.preventDefault();
+    // here we are taking userInput
+    const guess = parseInt(userInput.value);
+    console.log(guess);
+    validateGuess(guess);
+  });
+}
+
+function validateGuess(guess) {
+  /* (what if they give a,b)
+       or they give negative number
+  */
+  if (isNaN(guess)) {
+    alert('Please enter a valid number');
+  } else if (guess < 1) {
+    alert('Please enter a number more than 1');
+  } else if (guess > 100) {
+    alert('Please enter a number less then 100');
+  } else {
+    prevGuess.push(guess);
+    // it may happen ki uska last attempt hu (game over tu nahi hu gaya ha)
+    if (numGuess === 11) {
+      displayGuess(guess);
+      displayMessage(`Game Over. Random number was ${randomNumber}`);
+      endGame();
+    } else {
+      displayGuess(guess);
+      checkGuess(guess);
+    }
+  }
+}
+
+function checkGuess(guess) {
+  // check for value is low or high like that  if they are equal value so you win game
+  if (guess === randomNumber) {
+    displayMessage(`You guessed it right`);
+    endGame();
+  } else if (guess < randomNumber) {
+    displayMessage(`Number is Too low`);
+  } else if (guess > randomNumber) {
+    displayMessage(`Number is Too High `);
+  }
+}
+
+function displayGuess(guess) {
+  // it will clean your values and your guesses will update in array
+
+  userInput.value = '';
+  guessSlot.innerHTML += `${guess},  `;
+  numGuess++;
+  remaining.innerHTML = `${11 - numGuess}`; // innerHTML using because of span tag
+}
+
+function displayMessage(message) {
+  lowOrHi.innerHTML = `<h2>${message}</h2>`;
+}
+
+function endGame() {
+  userInput.value = ''; // by this value will be clean
+  userInput.setAttribute('disabled', ''); // it is in key value pair.
+  p.classList.add('button');
+  p.innerHTML = `<h2 id="newGame> Start new Game</h2>`;
+  startOver.appendChild(p);
+  playGame = false;
+  newGame();
+}
+
+function newGame() {
+  const newGameButton = document.querySelector('#newGame');
+  newGameButton.addEventListener('click', function (e) {
+    // doing variable reset
+    randomNumber = parseInt(Math.random() * 100 + 1);
+
+    prevGuess = [];
+    numGuess = 1;
+    guessSlot.innerHTML = '';
+    remaining.innerHTML = `${11 - numGuess}`;
+    userInput.removeAttribute('disabled');
+    startOver.removeChild(p);
+
+    playGame = true;
+  });
+}
+
+
+```
