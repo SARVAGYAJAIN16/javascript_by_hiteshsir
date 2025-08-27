@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Sarvagya aur Javascript</h1>
+    <button id="start">START</button>
+    <button id="stop">STOP</button>
+</body>
+<script>  
+    // setInterval method: It will run for infinte times
+/*
+    setInterval(function(){
+        console.log("sarvgya", Date.now())
+    }, 1000)
+
+// output so infinite times after every 1 sec it will print sarvagya
+*/
+
+ const sayDate = function(str){
+    console.log("Sarvagya", Date.now());
+ }
+ const intervalID =  setInterval(sayDate, 1000,"hi") // it can take 3 argument
+
+ clearInterval(intervalId)
+
+</script>
+</html>
