@@ -1,0 +1,56 @@
+<!-- Here only we will  write javascript -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xyz</title>
+ </head>
+ <body>
+    <h1>Sarvagya aur code</h1>
+    <button id = "stop">Stop</button>
+ </body>
+ <script>
+   // setTimeout() method
+   /*
+   NOTE:- It is a method which call API also.
+   */
+    // when you hover setTimeout() you see there is written handler which means callback or give 
+    //  refrence...
+   setTimeout(function(){
+      console.log("sarvagya")
+   }, 2000)  // (callback fun, time) here 2 sec
+
+   // output after 2 sec sarvagya will print ( only one time)
+
+// ->  now seeing by giving  refrence
+ 
+const saySarvagya = function(){
+   console.log("sarvagya");
+}
+//  setTimeout(saySarvagya(),2000) // here we are executed
+    setTimeout(saySarvagya, 2000)  // giving refrence
+
+//  output sarvagya  (1 time only)
+
+// deep dive 
+ 
+  const changeText = function(){
+    document.querySelector('h1').innerHTML = "best JS series"
+  }
+    setTimeout(changeText, 2000)
+//  output before sarvagya aur code then after 2 sec it become best js series
+
+// we want that before 2 sec if we click stop button so it stop setTimeout function.
+/*
+ so we have a clearTimeout() function and it want refrence 
+
+*/
+   const changeMe = setTimeout(changeText, 2000)
+   
+   document.querySelector('#stop').addEventListener('click',function(){
+       clearTimeout(changeMe)
+       console.log("STOPPED")
+   })
+ </script>
+ </html>
