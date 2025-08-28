@@ -6,7 +6,7 @@ let accountState;
 
 
 // accountId = 2;
-console.log(accountId);
+console.log(accountId); 
 console.table([accountId,accountEmail, accountPassword, accountCity, accountState]);
 
 
