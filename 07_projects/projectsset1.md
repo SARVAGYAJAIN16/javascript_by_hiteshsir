@@ -241,3 +241,77 @@ function newGame() {
 
 
 ```
+
+## Project 5 solution
+``` javascript
+// How to generate a random color (in hexa value it will generate)
+// hex value start from 0 to 9 and then A to F (10 to 15)..
+
+const randomColor = function () {
+  const hex = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += hex[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
+// console.log(randomColor());
+
+// console.log(Math.random() * 16); // here we get value from 0 to 16
+
+// console.log(Math.floor(Math.random() * 16));
+
+// Now we want start and stop reference
+let intervalId; // make global
+const startChangingColor = function () {
+  // safety check for good practise
+  if(!intervalId) // agar intervalId ha ki nahi tu..
+  {
+  intervalId = setInterval(changeBgColor, 1000);
+  }
+//  intervalId = setInterval(changeBgColor, 1000);
+
+  function changeBgColor() {
+    document.body.style.backgroundColor = randomColor();
+  }
+};
+const stopChangingColor = function () {
+  clearInterval(intervalId);
+  // code is working start and stop but there are edges cases..
+
+  //after our work we have done  we have clear intervalId and now we are derefrenceing the variable.
+  intervalId = null; // here now stop button is not doing stop... so, modify code of startChangingColor
+   
+};
+
+document.querySelector('#start').addEventListener('click', startChangingColor);
+
+document.querySelector('#stop').addEventListener('click', stopChangingColor);
+
+```
+
+## Project 6 solution
+``` javascript
+const insert = document.getElementById('insert');
+
+window.addEventListener('keydown', (e) => {
+  insert.innerHTML = `
+     <div class = 'color'>
+     <table>
+     <tr>
+       <th>Key</th>
+       <th>Keycode</th>
+       <th>Code</th>
+     </tr>
+     <tr>
+       <td>${e.key === ' ' ? 'Space' : e.key}</td>
+       <td>${e.keyCode}</td>
+       <td>${e.code}</td>
+     </tr>
+   </table>
+     </div>
+   `;
+});
+
+
+```
