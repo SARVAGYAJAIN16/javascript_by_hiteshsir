@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure</title>
+</head>
+<body>
+    <button id="orange">Orange </button>
+    <button id="green"> Green </button>
+</body>
+    <script>
+        /* closure ex 
+        function init(){
+            let name = "Mozilla";
+            function displayName() {
+                console.log(name);
+            }
+            displayName();
+        }
+        init();
+        */
+
+       //  to understand closure we need to understand about lexical scope
+
+        /*
+        function outer(){
+            let username = "sarvagya"
+        }//  outer scope data we cannot access
+        console.log(username); // error 
+        */
+ 
+        /*
+         function outer(){
+            let username = "sarvagya"
+            function inner(){
+                console.log("inner", username);
+            }
+            inner()
+        }
+        outer()
+        console.log("Too OUTER", username);
+
+        /* output
+          inner sarvagya 
+          error (too OUTER does not run)
+        */
+        
+        /*
+         function outer(){
+            let username = "sarvagya"
+            function inner(){
+                console.log("inner", username);
+            }
+            function innerTwo() {
+                console.log("innerTwo", username);
+            }
+            inner()
+            innerTwo()
+        }
+        outer()
+        console.log("Too OUTER", username);
+       
+     /* Output 
+       inner sarvagya
+       innerTwo sarvagya
+       error
+     */
+
+     function outer(){
+            let username = "sarvagya"
+            function inner(){
+                let secret = "my123"
+                console.log("inner", username);
+            }
+            function innerTwo() {
+                console.log("innerTwo", username);
+                console.log(secret); // here we are trying to access secret data from inner() function
+            }
+            inner()
+            innerTwo()
+        }
+        outer()
+        console.log("Too OUTER", username);
+       /* Output 
+        inner sarvagya
+        innerTwo sarvagya
+        error (here secret ka reference nahi dunga)..
+        // so we understand that  parent function sa kuch bhi la sakta hu but brother function aapas ma kuch share nahi karenga 
+       */
+
+       /* Remember:- 
+         outer function inner function ka data nahi access kar sakta 
+         chota baccha bada sa le sakta ha but bada log chota baccha sa nahi la sakta kuch.
+
+         so these is about lexical scoping. 
+       */
+
+       // Now understanding about closure..
+            function makeFunc(){
+            let name = "Mozilla";
+            function displayName() {
+                console.log(name);
+            }
+             return displayName();  // here we are returning function 
+        }
+        const myFunc = makeFunc();
+        myFunc();
+        
+        /* NOTE:-
+         here apan na function ka reference he pass kar diya ha as a return. 
+         function ka scope kab tak hota ha jab tak wo execute hota ha. tu execute hota ha phir katam hu jata ha.
+            const myFunc = makeFunc(); here makeFunc() is executed  so means scope is gone. so function ka scope he gayab hu gaya ha tu kaisa chala gi lexical scoping 
+           tu outer function he gayab hu gaya ha tu phir kaisa hoga. so 
+           here is a concept of closure. although uska scope waha sa aap na  execution context sa hata diya ha but now there is a role of memory reference.so,
+           in  myFunc ( we have return displayName but agar uska outer function bhi exist karta ha tu uska bhi pura scope jayega)
+           yaha puri memory share hoti ha( pura lexical scope share hota ha) .. na ki function ka exeuction context. 
+           So we acheive that we can print 'name' now (name tu outer function ma tha na (inner function ma tu tha he nahi)) 
+        */   
+    </script>
+
+    <script>
+        // Real world usecase for Interview Question
+        // making buttons 
+        // our goal is when we click on button so background color get change.
+          /*
+        document.getElementById("orange").onclick = function(){ // onclick ku function chaiya hota ha.
+             document.body.style.backgroundColor = `orange`
+          }
+          document.getElementById("green").onclick = function(){ // onclick ku function chaiya hota ha.
+             document.body.style.backgroundColor = `green`
+          }
+          */
+
+        // Now we are saying that 500 buttons ha unka color ki list bhi dunga array ka andar unha laga du .
+         /*  so making clickHandler() */ 
+
+         function clickHandler(color){
+           //   document.body.style.backgroundColor = `${color}` // to solve problem we do comment here
+                     // solving problem making a function
+
+                     return function(){ // here access of color is there(you know about closure that uska pura lexical scope jata ha pura (share) hu ta ha). now our code will work 
+                        document.body.style.backgroundColor = `${color}`
+                     }
+         }
+
+         document.getElementById('orange').onclick = clickHandler("orange") // yaha aap na function nahi diya ha . aap na diya ha function ka refrence.
+         document.getElementById('green').onclick = clickHandler("green")
+        
+         // In ouput automitically green background come( we have not click anything)
+         /* clickHandler("green")  here happen is that it directly function excute kar du. 
+             and this is expecting a function  in return here but you have given that function he execute kar du.
+             TO solve problem we have to change its defination in function clickHandler(color){}
+         */
+        
+         /* NOTE:-
+             function vs function reference
+               function reference means sirf definiation da raha hu
+
+         */
+
+
+
+    </script>
+    
+</html>
